@@ -1,0 +1,24 @@
+FROM python:3
+
+ARG PUID=1000
+ENV PUID ${PUID}
+ARG PGID=1000
+ENV PGID ${PGID}
+
+RUN apt-get update -yqq && \
+    groupadd -g ${PGID} myuser && \
+    useradd -u ${PUID} -g myuser -m myuser && \
+    usermod -p "*" myuser
+
+
+WORKDIR /usr/src/app
+
+COPY app/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN rm -rf /tmp/server.sock
+
+CMD ["uwsgi", "--ini", "server.ini"]
+# "--uid", "uwsgi"]
+
+
