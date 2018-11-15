@@ -1,0 +1,3 @@
+[submodule "app/frontend"]
+	path = app/frontend
+	url = https://github.com/epicmaxco/vuestic-admin.git
