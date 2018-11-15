@@ -17,11 +17,10 @@ RUN echo "" >> ~/.bashrc && \
     echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.bashrc && \
     curl -o- -L https://yarnpkg.com/install.sh | bash; \
     echo "" >> ~/.bashrc && \
-    echo 'export PATH="$HOME/.yarn/bin:$PATH"' >> ~/.bashrc 
+    echo 'export PATH="$HOME/.yarn/bin:$PATH"' >> ~/.bashrc && \
+    mkdir /usr/src/config
 
 WORKDIR /usr/src/app
 
 COPY app/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
-CMD ["uwsgi", "--ini", "server.ini"]

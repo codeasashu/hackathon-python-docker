@@ -6,6 +6,8 @@ services:
             dockerfile: build/Dockerfile_python
         volumes:
             - ./app:/usr/src/app
+            - ./logs/app:/var/log/app
+            - ./config/python:/usr/src/config
         expose:
             - "3000"
         environment:
@@ -14,6 +16,7 @@ services:
             - YARN_VERSION=${YARN_VERSION}
             - HOST=${HOST}
             - PORT=${PORT}
+        command: "uwsgi --ini /usr/src/config/server.ini"
     nginx:
         build:
             context: .
