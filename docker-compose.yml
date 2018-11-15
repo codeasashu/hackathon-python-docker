@@ -8,6 +8,7 @@ services:
             - ./app:/usr/src/app
             - ./logs/app:/var/log/app
             - ./config/python:/usr/src/config
+            - /var/run/docker.sock:/var/run/docker.sock
         expose:
             - "3000"
         environment:
