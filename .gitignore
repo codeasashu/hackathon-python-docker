@@ -2,3 +2,4 @@
 **/tags
 app/__pycache__
 .env
+logs/
